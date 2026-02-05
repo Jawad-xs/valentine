@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Valentine 💖</title>
+
+  <style>
+    body{
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      font-family: system-ui, Arial;
+      background: radial-gradient(circle at top, #ffd6e8, #ffeef6);
+    }
+
+    .card{
+      width:min(520px, 92vw);
+      background: rgba(255,255,255,.9);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.12);
+      text-align:center;
+    }
+
+    h1{
+      margin:0 0 10px;
+      font-size:24px;
+    }
+
+    p{
+      margin:0 0 18px;
+      opacity:.85;
+    }
+
+    .buttons{
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      margin-top: 12px;
+    }
+
+    button{
+      border:0;
+      padding:12px 20px;
+      border-radius:999px;
+      font-size:16px;
+      cursor:pointer;
+      user-select:none;
+      transition: transform 0.6s ease;
+      white-space: nowrap;
+    }
+
+    #yesBtn{
+      background:#ff2e76;
+      color:white;
+    }
+
+    #noBtn{
+      background:#222;
+      color:white;
+    }
+
+    .tiny{
+      font-size:13px;
+      opacity:.7;
+      margin-top:12px;
+    }
+
+    /* Screen switching */
+    #screen2{
+      display:none;
+    }
+
+    /* Image styling */
+    .val-img{
+      width:100%;
+      max-width:360px;
+      margin:18px auto 0;
+      display:block;
+      border-radius:18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+
+    <!-- SCREEN 1 -->
+    <div id="screen1">
+      <h1>Hi roro, will you be my valentine?</h1>
+      <p>warning: 7a etnamar 3layke kl nhar bas</p>
+
+      <div class="buttons">
+        <button id="yesBtn">YES 💘</button>
+        <button id="noBtn">NO 🙃</button>
+      </div>
+
+     <div class="tiny">(starje kbese no)</div>
+    </div>
+
+    <!-- SCREEN 2 -->
+    <div id="screen2">
+      <h1>💞 Ma32enno laffayte w derte mtl l3ade 💞</h1>
+      <p>Bas ktir cute ente</p>
+      <p class="tiny">I saw that you liked this reel on instagram, 5ede Roudaina Ghassani 🌹</p>
+
+      <!-- IMAGE -->
+      <img src="roro.jpg" class="val-img" alt="My Valentine 💖">
+    </div>
+
+  </div>
+
+  <script>
+    const screen1 = document.getElementById("screen1");
+    const screen2 = document.getElementById("screen2");
+
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn  = document.getElementById("noBtn");
+
+    // YES -> next interface
+    yesBtn.addEventListener("click", () => {
+      screen1.style.display = "none";
+      screen2.style.display = "block";
+    });
+
+    // NO runs away farther but stays clickable
+    const offsets = [
+      { x: 140,  y: 0 },
+      { x: -140, y: 0 },
+      { x: 100,  y: -70 },
+      { x: -100, y: -70 },
+      { x: 90,   y: 70 },
+      { x: -90,  y: 70 },
+      { x: 160,  y: -40 },
+      { x: -160, y: -40 }
+    ];
+
+    let last = -1;
+
+    noBtn.addEventListener("click", () => {
+      let i;
+      do {
+        i = Math.floor(Math.random() * offsets.length);
+      } while (i === last);
+      last = i;
+
+      const {x, y} = offsets[i];
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  </script>
+</body>
+</html>
